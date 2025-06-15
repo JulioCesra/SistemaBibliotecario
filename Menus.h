@@ -7,17 +7,17 @@
 #include "FuncionalidadesArquivos.h"
 #include "FuncionalidadesMenu.h"
 
+int funcionamentoMenu = 1;
+int opcao = 0;
+
 void MenuUsuarios(int idUsuarioLogado){
-    setlocale(LC_ALL,"Portuguese");
-    int opcao;
-    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
-        printf("MENU DO USUÁRIO\n");
-        printf("(1) - Alugar livro\n");
-        printf("(2) - Livros alugados\n");
-        printf("(3) - Sair\n");
-        printf("Digite uma das opções acima: ");
+        printf("\n=====MENU DO USUÁRIO=====\n");
+        printf("1 - Alugar livro\n");
+        printf("2 - Meus livros alugados\n");
+        printf("3 - Sair do menu do usuário\n");
+        printf("Digite o número correspondente com à opção desejada:  ");
         scanf("%d",&opcao);
         switch(opcao){
         case 1:
@@ -34,20 +34,17 @@ void MenuUsuarios(int idUsuarioLogado){
     }
 }
 void MenuAdministrador(){
-    setlocale(LC_ALL,"Portuguese");
-    int opcao;
-    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
-        printf("TELA DO ADMINISTRADOR\n\n");
-        printf("(1) - Registrar livros\n");
-        printf("(2) - Consultar livro por ID\n");
-        printf("(3) - Quantidade de livros em estoque\n");
-        printf("(4) - Listar livros\n");
-        printf("(5) - Visualizar usuários cadastrados\n");
-        printf("(6) - Visualizar livros alugados\n");
-        printf("(7) - Sair\n");
-        printf("Digite uma das opçãos acima: ");
+        printf("\n=====TELA DO ADMINISTRADOR=====\n");
+        printf("1 - Registrar livros\n");
+        printf("2 - Consultar livro por ID\n");
+        printf("3 - Quantidade de livros em estoque\n");
+        printf("4 - Visualizar livros registrados\n");
+        printf("5 - Visualizar usuários cadastrados\n");
+        printf("6 - Visualizar livros alugados\n");
+        printf("7 - Sair\n");
+        printf("Digite o número correspondente com à opção desejada: ");
         scanf("%d",&opcao);
         switch(opcao){
         case 1:
@@ -82,16 +79,13 @@ void MenuAdministrador(){
 }
 
 void MenuLogin(){
-    setlocale(LC_ALL, "Portuguese");
-    int opcao;
-    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
-        printf("MENU DE LOGIN\n");
-        printf("(1) - Entrar\n");
-        printf("(2) - Cadastrar usuário\n");
-        printf("(3) - Voltar para o menu principal\n");
-        printf("Digite uma das opções acima: ");
+        printf("\n=====MENU DE LOGIN=====\n");
+        printf("1 - Entrar no sistema\n");
+        printf("2 - Cadastrar usuário\n");
+        printf("3 - Sair do menu de login\n");
+        printf("Digite o número correspondente com à opção desejada: ");
         scanf("%d",&opcao);
         switch(opcao){
         case 1:
@@ -113,15 +107,12 @@ void MenuLogin(){
     }
 }
 void MenuPrincipal(){
-    setlocale(LC_ALL, "Portuguese");
-    int opcao;
-    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
-        printf("SISTEMA BIBLIOTECÁRIO\n");
-        printf("(1) - Tela de login\n");
-        printf("(2) - Sair\n");
-        printf("Digite um das opções: ");
+        printf("\n=====SISTEMA BIBLIOTECÁRIO=====\n");
+        printf("1 - Ir para a tela de login\n");
+        printf("2 - Encerrar programa\n");
+        printf("Digite o número correspondente com à opção desejada: ");
         scanf("%d",&opcao);
         switch(opcao){
         case 1:
