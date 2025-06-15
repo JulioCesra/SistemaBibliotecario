@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include "Estruturas.h"
 #include <string.h>
-#include <locale.h>
 
 //Sessão Usuários
 int ValidarEntradaUsuario(const char *nomeUsuario, const char *senhaUsuario){
@@ -81,7 +80,6 @@ int GeradorID(){
     return idMaximo + 1;
 }
 void RegistrarUsuarioEmArquivo(const char *nomeUsuario, const char *senhaUsuario){
-    setlocale(LC_ALL, "Portuguese");
     FILE *arquivo;
     arquivo = fopen("Usuarios_Cadastrados.txt","a+");
     if(arquivo == NULL){
@@ -97,7 +95,6 @@ void RegistrarUsuarioEmArquivo(const char *nomeUsuario, const char *senhaUsuario
     fclose(arquivo);
 }
 void ListarUsuariosRegistrados(){
-    setlocale(LC_ALL, "Portuguese");
     FILE *arquivo = fopen("Usuarios_Cadastrados.txt","r");
     if(arquivo == NULL){
         printf("Error ao abrir o arquivo\n");
@@ -180,7 +177,7 @@ int GeradorIDLivro(){
     fclose(arquivo);
     return idMaximo + 1;
 }
-void ListarLivros(){
+void VisualizarLivrosRegistrados(){
     FILE *arquivo = fopen("Livros_Registrados.txt","r");
     if(arquivo == NULL){
         printf("Error ao abrir o arquivo!");
@@ -191,7 +188,6 @@ void ListarLivros(){
         printf("%s",linhas);
     }
     fclose(arquivo);
-    system("Pause");
 }
 void BuscarLivroPorID(const int IDProcurar){
     FILE *arquivo = fopen("Livros_Registrados.txt","r");

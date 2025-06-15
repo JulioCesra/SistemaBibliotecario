@@ -7,9 +7,9 @@
 #include "Menus.h"
 #include "FuncionalidadesArquivos.h"
 //Funcionalidades do menu dos usuários
-void EntradaUsuario(){
+void EntradaSistema(){
     struct Usuario usuario;
-    setlocale(LC_ALL, "Portuguese");
+    printf("\n=====ENTRADA DO SISTEMA=====\n");
     printf("Digite o usuário: ");
     scanf(" %[^\n]",usuario.nome);
     printf("Digite a senha: ");
@@ -33,10 +33,9 @@ void EntradaUsuario(){
         }
     }
 }
-void CadastroUsuarios(){
+void CadastrarUsuario(){
     struct Usuario usuario;
-    setlocale(LC_ALL, "Portuguese");
-    printf("MENU DE CADASTRO DOS USUÁRIOS\n");
+    printf("\n=====MENU DE CADASTRO DOS USUÁRIOS=====\n");
     printf("Digite o nome do usuario: ");
     scanf("%s",usuario.nome);
     printf("Digite a senha: ");
@@ -50,9 +49,8 @@ void CadastroUsuarios(){
 }
 void AlugarLivro(int idUsuarioLogado){
     int idSelecionado = 0;
-    setlocale(LC_ALL,"Portuguese");
     printf("Livros disponíveis para locação: \n");
-    ListarLivros();
+    VisualizarLivrosRegistrados();
     printf("Digite o ID do livro que deseja locar: ");
     if(scanf("%d",&idSelecionado) != 1){
         printf("Entrada inválida!\n");
@@ -66,22 +64,21 @@ void AlugarLivro(int idUsuarioLogado){
         if(statusLocacao == 1){
             printf("Livro já alugado!\n");
         }else if (statusLocacao == 2){
-            printf("Locação máxima de 3 livros já atingida!\n");
+            printf("Locação máxima de 3 livros atingida!\n");
         }else{
             RegistroLivrosLocadosPorUsuario(tituloID,usuarioID,LocalizarTitutoLivroPorID(tituloID));
             printf("Livro locado com sucesso!\n");
         }
     }else{
-        printf("ID não encontrado!\n");
+        printf("ID digitado não encontrado!\n");
     }
     EsperarInputUsuario();
 }
 
 //Funcionalidades do menu dos administradores
-void CadastroLivros(){
-    setlocale(LC_ALL, "Portuguese");
+void RegistrarLivro(){
     struct Livro livro;
-    printf("MENU DE CADASTRO DOS LIVROS\n");
+    printf("\n=====REGISTAR LIVROS=====\n");
     printf("Digite o título do livro: ");
     scanf(" %[^\n]",livro.titulo);
     printf("Digite o nome do autor: ");
@@ -119,7 +116,7 @@ void CadastroLivros(){
 }
 void ConsultarLivroPorID(){
     struct Livro livro;
-    printf("MENU BUSCAR POR ID\n");
+    printf("\n=====BUSCA POR ID=====\n");
     printf("Digite o id do livro para buscar: ");
     if(scanf("%d",&livro.ID) != 1){
         printf("Entrada inválida. Digite corretamente o ID!\n");
@@ -130,12 +127,12 @@ void ConsultarLivroPorID(){
     EsperarInputUsuario();
 }
 void VisualizarUsuariosCadastrados(){
-    printf("Usuários cadastrados: \n");
+    printf("\n=====Usuários cadastrados=====\n");
     ListarUsuariosRegistrados();
     EsperarInputUsuario();
 }
 void VisualizarLivrosAlugados(){
-    printf("Livros alugados: \n");
+    printf("\n=====Livros alugados=====\n");
     SessaoListarLivrosAlugadosAdministrador();
     EsperarInputUsuario();
 }

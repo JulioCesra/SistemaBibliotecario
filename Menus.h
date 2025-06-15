@@ -36,38 +36,38 @@ void MenuAdministrador(){
     int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
-        printf("\n=====TELA DO ADMINISTRADOR=====\n");
+        printf("\n=====MENU DO ADMINISTRADOR=====\n");
         printf("1 - Registrar livros\n");
         printf("2 - Consultar livro por ID\n");
-        printf("3 - Quantidade de livros em estoque\n");
-        printf("4 - Visualizar livros registrados\n");
-        printf("5 - Visualizar usuários cadastrados\n");
-        printf("6 - Visualizar livros alugados\n");
-        printf("7 - Sair\n");
+        printf("3 - Visualizar livros registrados\n");
+        printf("4 - Visualizar usuários cadastrados\n");
+        printf("5 - Visualizar livros alugados\n");
+        printf("6 - Sair do menu do administrador\n");
         printf("Digite o número correspondente com à opção desejada: ");
         scanf("%d",&opcao);
         switch(opcao){
         case 1:
             LimparTela();
-            CadastroLivros();
+            RegistrarLivro();
             break;
         case 2:
             LimparTela();
             ConsultarLivroPorID();
             break;
-        case 4:
+        case 3:
             LimparTela();
-            ListarLivros();
+            VisualizarLivrosRegistrados();
+            EsperarInputUsuario();
             break;
-        case 5:
+        case 4:
             LimparTela();
             VisualizarUsuariosCadastrados();
             break;
-        case 6:
+        case 5:
             LimparTela();
             VisualizarLivrosAlugados();
             break;
-        case 7:
+        case 6:
             LimparTela();
             funcionamentoMenu = 0;
             break;
@@ -91,11 +91,11 @@ void MenuLogin(){
         switch(opcao){
         case 1:
             LimparTela();
-            EntradaUsuario();
+            EntradaSistema();
             break;
         case 2:
             LimparTela();
-            CadastroUsuarios();
+            CadastrarUsuario();
             break;
         case 3:
             LimparTela();
