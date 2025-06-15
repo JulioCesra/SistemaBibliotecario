@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1749768375 source:c:\users\julio\onedrive\documentos\projeto em c\biblioteca\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menus.h"
+
+1749998253 c:\users\julio\onedrive\documentos\projeto em c\biblioteca\menus.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	"FuncionalidadesArquivos.h"
+	"FuncionalidadesMenu.h"
+
+1749998152 c:\users\julio\onedrive\documentos\projeto em c\biblioteca\funcionalidadesarquivos.h
+	<stdio.h>
+	<stdlib.h>
+	"Estruturas.h"
+	<string.h>
+	<locale.h>
+
+1749864740 c:\users\julio\onedrive\documentos\projeto em c\biblioteca\estruturas.h
+
+1749998320 c:\users\julio\onedrive\documentos\projeto em c\biblioteca\funcionalidadesmenu.h
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+	"Menus.h"
+	"FuncionalidadesArquivos.h"
+

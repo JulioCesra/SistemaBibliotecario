@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "Estruturas.h"
+#include <string.h>
+int VerificarUsuarioExistente(char nomeUsuario, char senhaUsuario){
+    FILE *arquivo;
+    arquivo = fopen("Usuarios_Cadastrados.txt","rb");
+    struct Usuario usuario;
+    if(arquivo == NULL){
+        printf("Error ao abrir o arquivo.\n");
+        return 0;
+    }
+    while(fread(&usuario,sizeof(struct Usuario),1,arquivo) == 1){
+        if((strcmp(nomeUsuario,usuario.nome) == 0 && (strcmp(senhaUsuario,usuario.senha) == 0)) == 0){
+            fclose(arquivo);
+            printf("Usuario encontrado\n");
+            return 1;
+        }
+    }
+    fclose(arquivo);
+    return 0;
+
+}

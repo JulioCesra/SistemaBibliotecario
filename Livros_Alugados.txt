@@ -1,0 +1,25 @@
+
+
+ID do livro locado: 1
+ID do locatário: 1
+Nome do livro locado: O principe
+
+ID do livro locado: 2
+ID do locatário: 1
+Nome do livro locado: Metamorfose
+
+ID do livro locado: 3
+ID do locatário: 1
+Nome do livro locado: LivroTeste
+
+ID do livro locado: 1
+ID do locatário: 2
+Nome do livro locado: O principe
+
+ID do livro locado: 2
+ID do locatário: 2
+Nome do livro locado: Metamorfose
+
+ID do livro locado: 5
+ID do locatário: 2
+Nome do livro locado: Revolu‡Æo dos bichos

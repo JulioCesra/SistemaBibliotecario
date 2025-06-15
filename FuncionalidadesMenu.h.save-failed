@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include "Menus.h"
+#include "FuncionalidadesArquivos.h"
+void EntradaUsuario(){
+    char usuario[60];
+    char senhaUsuario[60];
+    setlocale(LC_ALL, "Portuguese");
+    printf("Digite o usuário: ");
+    scanf("%s",usuario);
+    printf("Digite a senha: ");
+    scanf("%s",senhaUsuario);
+    if(strcmp(usuario,"admin") == 0 && strcmp(senhaUsuario,"admin") == 0){
+        MenuAdministrador();
+    }else if(VerificarUsuarioExistente(usuario,senha)){
+            printf("TELA USUARIO\n");
+    }else{
+        printf("Usuário ou senha incorretos.\n");
+    }
+}
+
+void LimparTela(){
+    system("cls");
+}
