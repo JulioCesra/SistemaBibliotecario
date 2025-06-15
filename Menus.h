@@ -7,10 +7,9 @@
 #include "FuncionalidadesArquivos.h"
 #include "FuncionalidadesMenu.h"
 
-int funcionamentoMenu = 1;
 int opcao = 0;
-
 void MenuUsuarios(int idUsuarioLogado){
+    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
         printf("\n=====MENU DO USUÁRIO=====\n");
@@ -34,6 +33,7 @@ void MenuUsuarios(int idUsuarioLogado){
     }
 }
 void MenuAdministrador(){
+    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
         printf("\n=====TELA DO ADMINISTRADOR=====\n");
@@ -79,6 +79,7 @@ void MenuAdministrador(){
 }
 
 void MenuLogin(){
+    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
         printf("\n=====MENU DE LOGIN=====\n");
@@ -107,6 +108,7 @@ void MenuLogin(){
     }
 }
 void MenuPrincipal(){
+    int funcionamentoMenu = 1;
     while(funcionamentoMenu){
         LimparTela();
         printf("\n=====SISTEMA BIBLIOTECÁRIO=====\n");
