@@ -81,7 +81,7 @@ void MenuAdministrador(){
 void MenuLogin(){
     while(funcionamentoMenu){
         LimparTela();
-        printf("\n=====MENU DE LOGIN=====######################\n");
+        printf("\n=====MENU DE LOGIN=====\n");
         printf("1 - Entrar no sistema\n");
         printf("2 - Cadastrar usuário\n");
         printf("3 - Sair do menu de login\n");
