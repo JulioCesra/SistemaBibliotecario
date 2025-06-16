@@ -2,11 +2,10 @@
 #define FUNCIONALIDADES_MENU_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <string.h>
 #include "Menus.h"
 #include "FuncionalidadesArquivos.h"
-//Funcionalidades do menu dos usuários
+//Funcionalidades do menu de login
 void EntradaSistema(){
     struct Usuario usuario;
     printf("\n=====ENTRADA DO SISTEMA=====\n");
@@ -35,7 +34,7 @@ void EntradaSistema(){
 }
 void CadastrarUsuario(){
     struct Usuario usuario;
-    printf("\n=====MENU DE CADASTRO DOS USUÁRIOS=====\n");
+    printf("\n=====CADASTRO DO USUÁRIO=====\n");
     printf("Digite o nome do usuario: ");
     scanf("%s",usuario.nome);
     printf("Digite a senha: ");
@@ -47,9 +46,12 @@ void CadastrarUsuario(){
         RegistrarUsuarioEmArquivo(usuario.nome,usuario.senha);
     }
 }
+
+//Funcionalidades do menu do usuário
 void AlugarLivro(int idUsuarioLogado){
+    struct LivroAlugado livroAlugado;
     int idSelecionado = 0;
-    printf("Livros disponíveis para locação: \n");
+    printf("\n=====LIVROS DISPONÍVEIS PARA LOCAÇÃO=====\n");
     VisualizarLivrosRegistrados();
     printf("Digite o ID do livro que deseja locar: ");
     if(scanf("%d",&idSelecionado) != 1){
@@ -58,15 +60,15 @@ void AlugarLivro(int idUsuarioLogado){
     }
 
     if(ValidarIdLivro(idSelecionado) == 1){
-        int usuarioID = idUsuarioLogado;
-        int tituloID = idSelecionado;
-        int statusLocacao = VerificarLocacoes(usuarioID,tituloID);
+        livroAlugado.IDLocador = idUsuarioLogado;
+        livroAlugado.IDLivro = idSelecionado;
+        int statusLocacao = VerificarLocacoes(livroAlugado.IDLocador,livroAlugado.IDLivro);
         if(statusLocacao == 1){
             printf("Livro já alugado!\n");
         }else if (statusLocacao == 2){
             printf("Locação máxima de 3 livros atingida!\n");
         }else{
-            RegistroLivrosLocadosPorUsuario(tituloID,usuarioID,LocalizarTitutoLivroPorID(tituloID));
+            RegistroLivrosLocadosPorUsuario(livroAlugado.IDLivro,livroAlugado.IDLocador,LocalizarTitutoLivroPorID(livroAlugado.IDLivro));
             printf("Livro locado com sucesso!\n");
         }
     }else{
@@ -78,7 +80,7 @@ void AlugarLivro(int idUsuarioLogado){
 //Funcionalidades do menu dos administradores
 void RegistrarLivro(){
     struct Livro livro;
-    printf("\n=====REGISTAR LIVROS=====\n");
+    printf("\n=====REGISTAR LIVRO=====\n");
     printf("Digite o título do livro: ");
     scanf(" %[^\n]",livro.titulo);
     printf("Digite o nome do autor: ");

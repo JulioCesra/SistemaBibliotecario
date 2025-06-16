@@ -23,3 +23,11 @@ Nome do livro locado: Metamorfose
 ID do livro locado: 5
 ID do locatário: 2
 Nome do livro locado: Revolu‡Æo dos bichos
+
+ID do livro locado: 2
+ID do locatário: 4
+Nome do livro locado: Metamorfose
+
+ID do livro locado: 4
+ID do locatário: 4
+Nome do livro locado: 1984

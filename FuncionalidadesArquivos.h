@@ -58,8 +58,7 @@ int VerificarUsuarioExistente(const char *nomeUsuario){
     return 0;
 
 }
-int GeradorID(){
-
+int GeradorIdUsuario(){
     char linhas[256];
     int id = 0;
     int idMaximo = 0;
@@ -88,7 +87,7 @@ void RegistrarUsuarioEmArquivo(const char *nomeUsuario, const char *senhaUsuario
     }
 
     struct Usuario usuario;
-    usuario.ID = GeradorID();
+    usuario.ID = GeradorIdUsuario();
     fprintf(arquivo,"\nID do usuário: %d\n",usuario.ID);
     fprintf(arquivo,"Nome do usuário: %s\n",nomeUsuario);
     fprintf(arquivo,"Senha do usuário: %s\n",senhaUsuario);

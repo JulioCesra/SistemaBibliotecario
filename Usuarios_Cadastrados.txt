@@ -6,3 +6,11 @@ Senha do usuário: 20
 ID do usuário: 2
 Nome do usuário: Carlos
 Senha do usuário: 21
+
+ID do usuário: 3
+Nome do usuário: Pedro
+Senha do usuário: Mendes
+
+ID do usuário: 4
+Nome do usuário: PedroH
+Senha do usuário: 123123

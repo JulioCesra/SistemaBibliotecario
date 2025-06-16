@@ -40,3 +40,10 @@ Autor: s
 Gênero literário: s
 Ano de lançamento: 2024
 Quantidade em estoque: 12
+
+ID do livro: 7
+Titulo: Calculo 2
+Autor: James Stewart
+Gênero literário: Didatico
+Ano de lançamento: 2008
+Quantidade em estoque: 10

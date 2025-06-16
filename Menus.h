@@ -2,7 +2,6 @@
 #define MENUS_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <string.h>
 #include "FuncionalidadesArquivos.h"
 #include "FuncionalidadesMenu.h"
@@ -77,7 +76,6 @@ void MenuAdministrador(){
         }
     }
 }
-
 void MenuLogin(){
     int funcionamentoMenu = 1;
     while(funcionamentoMenu){

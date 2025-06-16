@@ -29,21 +29,20 @@
 	"Menus.h"
 	"FuncionalidadesArquivos.h"
 
-1750001611 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\main.c
+1750078055 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Menus.h"
 	<locale.h>
 
-1750005521 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.h
+1750078045 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.h
 	<stdio.h>
 	<stdlib.h>
-	<locale.h>
 	<string.h>
 	"FuncionalidadesArquivos.h"
 	"FuncionalidadesMenu.h"
 
-1750005958 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
+1750078614 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
 	<stdio.h>
 	<stdlib.h>
 	"Estruturas.h"
@@ -51,10 +50,9 @@
 
 1749864740 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\estruturas.h
 
-1750006131 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
+1750078842 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
 	<stdio.h>
 	<stdlib.h>
-	<locale.h>
 	<string.h>
 	"Menus.h"
 	"FuncionalidadesArquivos.h"
