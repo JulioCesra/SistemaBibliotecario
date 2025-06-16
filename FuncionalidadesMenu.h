@@ -44,6 +44,7 @@ void CadastrarUsuario(){
     }else{
         printf("Usuário cadastrado com sucesso!");
         RegistrarUsuarioEmArquivo(usuario.nome,usuario.senha);
+        EsperarInputUsuario();
     }
 }
 
