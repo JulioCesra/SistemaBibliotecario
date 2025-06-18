@@ -1,0 +1,8 @@
+
+ID do usuário: 1
+Nome do usuário: Julio
+Senha do usuário: 20
+
+ID do usuário: 2
+Nome do usuário: Arthur
+Senha do usuário: 1

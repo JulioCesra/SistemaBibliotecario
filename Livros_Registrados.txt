@@ -1,0 +1,28 @@
+
+ID do livro: 1
+Titulo: Laranja Mecƒnica
+Autor: Antony Burgess
+Gênero literário: Distopia
+Ano de lançamento: 1910
+Quantidade em estoque: 32
+
+ID do livro: 2
+Titulo: JulioLivro
+Autor: Julio
+Gênero literário: Drama
+Ano de lançamento: 1345
+Quantidade em estoque: 1000
+
+ID do livro: 3
+Titulo: HistoriaDoJulio
+Autor: Julio
+Gênero literário: Didatico
+Ano de lançamento: 200
+Quantidade em estoque: 2
+
+ID do livro: 4
+Titulo: LoucurasDoJulio
+Autor: Julio
+Gênero literário: 18
+Ano de lançamento: 100
+Quantidade em estoque: 2
