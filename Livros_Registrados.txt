@@ -1,26 +1,27 @@
 
 ID do livro: 1
-Titulo: O principe
-Autor: Maquiavel
-Gênero literário: Drama
-Ano de lançamento: 1920
-Quantidade em estoque: 20
+Titulo: Laranja Mecƒnica
+Autor: Antony Burgess
+Gênero literário: Distopia
+Ano de lançamento: 1910
+Quantidade em estoque: 32
 
 ID do livro: 2
-Titulo: Metamorfose
-Autor: Krafka
+Titulo: JulioLivro
+Autor: Julio
 Gênero literário: Drama
-Ano de lançamento: 1970
-Quantidade em estoque: 10
+Ano de lançamento: 1345
+Quantidade em estoque: 1000
 
 ID do livro: 3
-Titulo: LivroTeste
+Titulo: HistoriaDoJulio
 Autor: Julio
-Gênero literário: Terror
-Ano de lançamento: 1930
-Quantidade em estoque: 14
+Gênero literário: Didatico
+Ano de lançamento: 200
+Quantidade em estoque: 2
 
 ID do livro: 4
+<<<<<<< HEAD
 Titulo: 1984
 Autor: George Owell
 Gênero literário: Futurista
@@ -54,3 +55,10 @@ Autor: Box
 Gênero literário: suspense
 Ano de lançamento: 1988
 Quantidade em estoque: 33
+=======
+Titulo: LoucurasDoJulio
+Autor: Julio
+Gênero literário: 18
+Ano de lançamento: 100
+Quantidade em estoque: 2
+>>>>>>> 6547c5eca7fd7aac205965bef1b87c6dab79dec8
