@@ -47,3 +47,10 @@ Autor: James Stewart
 Gênero literário: Didatico
 Ano de lançamento: 2008
 Quantidade em estoque: 10
+
+ID do livro: 8
+Titulo: Book
+Autor: Box
+Gênero literário: suspense
+Ano de lançamento: 1988
+Quantidade em estoque: 33

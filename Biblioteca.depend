@@ -57,3 +57,31 @@
 	"Menus.h"
 	"FuncionalidadesArquivos.h"
 
+1750087083 source:c:\users\teste\downloads\sistemabibliotecario\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menus.h"
+	<locale.h>
+
+1750087083 c:\users\teste\downloads\sistemabibliotecario\menus.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"FuncionalidadesArquivos.h"
+	"FuncionalidadesMenu.h"
+
+1750087083 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesarquivos.h
+	<stdio.h>
+	<stdlib.h>
+	"Estruturas.h"
+	<string.h>
+
+1750003573 c:\users\teste\downloads\sistemabibliotecario\estruturas.h
+
+1750087083 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesmenu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Menus.h"
+	"FuncionalidadesArquivos.h"
+
