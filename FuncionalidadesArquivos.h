@@ -139,8 +139,7 @@ int IdUsuarioAtual(const char *nomeUsuario){
 }
 
 //Sessão Livros
-void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char *generoLiterario, const int anoLancamento, const int quantidadeEmEstoque){
-    FILE *arquivo;
+void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char *generoLiterario, const int anoLancamento, const int quantidadeEmEstoque, const char statusLivro){
     arquivo = fopen("Livros_Registrados.txt","a");
     if(arquivo == NULL){
         printf("Error ao abrir o arquivo!");
@@ -154,6 +153,7 @@ void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char 
     fprintf(arquivo,"Gênero literário: %s\n",generoLiterario);
     fprintf(arquivo,"Ano de lançamento: %d\n",anoLancamento);
     fprintf(arquivo,"Quantidade em estoque: %d\n",quantidadeEmEstoque);
+    fprintf(arquivo,"Status: %s\n", statusLivro);//DISPONIVEL OR INDISPONIVEL
     fclose(arquivo);
 
 }
@@ -349,4 +349,68 @@ void SessaoListarLivrosAlugadosUsuarios(const int idLocatario){
     fclose(arquivo);
     EsperarInputUsuario();
 }
+void DesativarLivrosAdministrador(const int idDesativar) {//Desativar
+    FILE *arquivo = fopen("Livros_Registrados.txt", "r");
+    FILE *temp = fopen("temp.txt", "w");
+    FILE *doacao = fopen("Livros_Doacao.txt", "a"); // acumula livros para doação
+    if (arquivo == NULL || temp == NULL || doacao == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        if (arquivo) fclose(arquivo);
+        if (temp) fclose(temp);
+        if (doacao) fclose(doacao);
+        return;
+    }
+    char linha[256];
+    int idLido = -1;
+    int livroEncontrado = 0;
+    int dentroDoLivro = 0; // flag para saber se estamos copiando o livro atual
+    char bufferLivro[1024] = ""; // para armazenar o livro inteiro
+    bufferLivro[0] = '\0';
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        if (sscanf(linha, "ID do livro: %d", &idLido) == 1) {
+            // Se encontramos outro livro, checar se o anterior era o desativado
+            if (dentroDoLivro) {
+                if (livroEncontrado) {
+                    fprintf(doacao, "%s", bufferLivro);
+                } else {
+                    fprintf(temp, "%s", bufferLivro);
+                }
+                bufferLivro[0] = '\0';
+                livroEncontrado = 0;
+            }
+            dentroDoLivro = 1;
+        }
+        // Se estamos dentro do livro alvo, marca que encontramos
+        if (dentroDoLivro && idLido == idDesativar) {
+            livroEncontrado = 1;
+        }
+        // Se for a linha do status e é o livro a desativar, atualiza no buffer
+        if (livroEncontrado && strstr(linha, "Status:")) {
+            strcat(bufferLivro, "Status: Indisponivel\n");
+        } else {
+            strcat(bufferLivro, linha);
+        }
+    }
+    // Grava o último livro lido
+    if (dentroDoLivro) {
+        if (livroEncontrado) {
+            fprintf(doacao, "%s", bufferLivro);
+        } else {
+            fprintf(temp, "%s", bufferLivro);
+        }
+    }
+    fclose(arquivo);
+    fclose(temp);
+    fclose(doacao);
+    // Substitui o arquivo original
+    remove("Livros_Registrados.txt");
+    rename("temp.txt", "Livros_Registrados.txt");
+
+    if (livroEncontrado) {
+        printf("Livro de ID %d desativado e movido para doação.\n", idDesativar);
+    } else {
+        printf("Livro de ID %d não encontrado.\n", idDesativar);
+    }
+}
+
 #endif

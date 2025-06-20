@@ -115,7 +115,9 @@ void RegistrarLivro(){
             printf("A quantidade não pode ser menor ou igual a zero!\n");
         }
     }while(livro.quantidadeEmEstoque <= 0);
-    RegistrarLivrosEmArquivo(livro.titulo,livro.autor,livro.generoLiterario,livro.anoLancamento,livro.quantidadeEmEstoque);
+    printf("Digite o status do livro: ");
+    scanf(" %[^\n]",livro.statusLivro);//registrar status do livro
+    RegistrarLivrosEmArquivo(livro.titulo,livro.autor,livro.generoLiterario,livro.anoLancamento,livro.quantidadeEmEstoque,livro.statusLivro);
 }
 void ConsultarLivroPorID(){
     struct Livro livro;
@@ -150,5 +152,24 @@ void EsperarInputUsuario(){
 void LimparBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
+}
+// função  desativar
+void AdministradorDesativar(){
+    struct Livro livro;
+    printf("\n=====Deletar Livros =====\n");
+    prinf("Digite o ID do livro para desativar: ");//Tem que criar codigo identificador dos livros
+    if(scanf("%d",&livro.ID) != 1){
+        printf("Entrada inválida. Digite corretamente o ID!\n");
+        LimparBuffer();
+    }else{
+        DesativarLivrosAdministrador(livro.ID);
+    }
+    EsperarInputUsuario();
+}
+//função doação
+void DoarLivros(){
+
+}
+
 }
 #endif

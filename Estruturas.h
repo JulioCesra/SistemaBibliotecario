@@ -11,6 +11,7 @@ struct Livro{
     int ID;
     char titulo[60];
     char autor[60];
+    char statusLivro[15];//Criei Status do Livro
     char generoLiterario[60];
     int anoLancamento;
     int quantidadeEmEstoque;
