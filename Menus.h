@@ -41,7 +41,8 @@ void MenuAdministrador(){
         printf("3 - Visualizar livros registrados\n");
         printf("4 - Visualizar usuários cadastrados\n");
         printf("5 - Visualizar livros alugados\n");
-        printf("6 - Sair do menu do administrador\n");
+        printf("6 - Desativar livros\n");
+        printf("7 - Sair do menu do administrador\n");
         printf("Digite o número correspondente com à opção desejada: ");
         scanf("%d",&opcao);
         switch(opcao){
@@ -67,6 +68,10 @@ void MenuAdministrador(){
             VisualizarLivrosAlugados();
             break;
         case 6:
+            LimparTela();
+            AdministradorDesativar();
+            break;
+        case 7:
             LimparTela();
             funcionamentoMenu = 0;
             break;

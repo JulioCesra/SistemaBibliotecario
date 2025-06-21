@@ -47,7 +47,6 @@ void CadastrarUsuario(){
         EsperarInputUsuario();
     }
 }
-
 //Funcionalidades do menu do usuário
 void AlugarLivro(int idUsuarioLogado) {
     int idSelecionado;
@@ -153,7 +152,6 @@ void VisualizarLivrosAlugados(){
     SessaoListarLivrosAlugadosAdministrador();
     EsperarInputUsuario();
 }
-
 //Funcionalidades para todos os menus
 void LimparTela(){
     system("cls");
@@ -180,7 +178,7 @@ void AdministradorDesativar(){
 }
 //função doação
 void DoarLivros(){
-
+    //FALTA ARRUMAR ESSA PARTE
 }
 
 
