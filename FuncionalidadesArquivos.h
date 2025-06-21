@@ -412,5 +412,90 @@ void DesativarLivrosAdministrador(const int idDesativar) {//Desativar
         printf("Livro de ID %d não encontrado.\n", idDesativar);
     }
 }
+int UsuarioJaAlugouGenero(int idUsuario, const char *genero) {
+    FILE *f = fopen("Livros_Usuario.txt", "r");
+    if (!f) return 0;
+    int idUser, idLivro;
+    char generoLido[60];
+    while (fscanf(f, "%d|%d|%29[^\n]", &idUser, &idLivro, generoLido) == 3) {
+        if (idUser == idUsuario && strcmp(generoLido, genero) == 0) {
+            fclose(f);
+            return 1;
+        }
+    }
+    fclose(f);
+    return 0;
+}
+int LocalizarGeneroPorID(int idLivro, char *genero) {
+    FILE *f = fopen("Livros_Alugados.txt", "r");
+    if (!f) {
+        printf("Erro ao abrir Livros_Alugados.txt\n");
+        return 0;
+    }
+    struct Livro livro;
+    while (fscanf(f, "%d|%99[^|]|%29[^|]|%d\n",
+                  &livro.ID,
+                  livro.titulo,
+                  livro.generoLiterario,
+                  &livro.quantidadeEmEstoque == 4) {
+        if (livro.ID == idLivro) {
+            strcpy(genero, livro.generoLiterario);
+            fclose(f);
+            return 1;
+        }
+    }
+    fclose(f);
+    return 0;
+}
+int DecrementaQuantidadeLivro(int idLivro) {
+    FILE *f = fopen("Livros_Alugados.txt", "r");
+    if (!f) return 0;
+    struct Livro livro[60];
+    int total = 0;
+    while (fscanf(f, "%d|%99[^|]|%29[^|]|%d\n",
+           &livro[total].ID,
+           livro[total].titulo,
+           livro[total].generoLiterario,
+           &livro[total].quantidadeEmEstoque) == 4) {
+        total++;
+    }
+    fclose(f);
+    int encontrado = 0;
+    for (int i = 0; i < total; ++i) {
+        if (livro[i].ID == idLivro) {
+            if (livro[i].quantidadeEmEstoque <= 0) {
+                return 0;
+            }
+            livro[i].quantidadeEmEstoque--; // decrementa
+            encontrado = 1;
+            break;
+        }
+    }
+    if (!encontrado) {
+        return 0;
+    }
+    f = fopen("Livros_Alugados.txt", "w");
+    if (!f) return 0;
+    for (int i = 0; i < total; ++i) {
+        fprintf(f, "%d|%s|%s|%d\n",
+                livro[i].id,
+                livro[i].titulo,
+                livro[i].generoLiterario,
+                livro[i].quantidadeEmEstoque);
+    }
+    fclose(f);
+    return 1;
+}
+int RegistroLivrosLocadosPorUsuario(int idLivro, int idUsuario, const char *genero) {
+    FILE *f = fopen("Livros_Usuario.txt", "a");
+    if (!f) {
+        printf("Erro ao abrir Livros_Usuario.txt\n");
+        return 0;
+    }
+    fprintf(f, "%d|%d|%s\n", idUsuario, idLivro, genero);
+    fclose(f);
+    return 1;
+}
+
 
 #endif

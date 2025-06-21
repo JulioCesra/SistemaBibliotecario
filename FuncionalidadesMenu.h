@@ -49,35 +49,47 @@ void CadastrarUsuario(){
 }
 
 //Funcionalidades do menu do usuário
-void AlugarLivro(int idUsuarioLogado){
-    struct LivroAlugado livroAlugado;
-    int idSelecionado = 0;
-    printf("\n=====LIVROS DISPONÍVEIS PARA LOCAÇÃO=====\n");
+void AlugarLivro(int idUsuarioLogado) {
+    int idSelecionado;
+    printf("\n===== LIVROS DISPONIVEIS PARA LOCACAO =====\n");
     VisualizarLivrosRegistrados();
-    printf("Digite o ID do livro que deseja locar: ");
-    if(scanf("%d",&idSelecionado) != 1){
-        printf("Entrada inválida!\n");
+    printf("\nDigite o ID do livro que deseja locar: ");
+    if (scanf("%d", &idSelecionado) != 1) {
+        printf("Entrada invalida!\n");
         return;
     }
-
-    if(ValidarIdLivro(idSelecionado) == 1){
-        livroAlugado.IDLocador = idUsuarioLogado;
-        livroAlugado.IDLivro = idSelecionado;
-        int statusLocacao = VerificarLocacoes(livroAlugado.IDLocador,livroAlugado.IDLivro);
-        if(statusLocacao == 1){
-            printf("Livro já alugado!\n");
-        }else if (statusLocacao == 2){
-            printf("Locação máxima de 3 livros atingida!\n");
-        }else{
-            RegistroLivrosLocadosPorUsuario(livroAlugado.IDLivro,livroAlugado.IDLocador,LocalizarTitutoLivroPorID(livroAlugado.IDLivro));
-            printf("Livro locado com sucesso!\n");
-        }
-    }else{
+    if (!ValidarIdLivro(idSelecionado)) {
         printf("ID digitado não encontrado!\n");
+        return;
+    }
+    // Pega o gênero do livro
+    char genero[60];
+    if (!LocalizarGeneroPorID(idSelecionado, genero)) {
+        printf("Não foi possível encontrar o gênero do livro.\n");
+        return;
+    }
+    // Verifica se o usuário atual já alugou livro desse gênero
+    if (UsuarioJaAlugouGenero(idUsuarioLogado, genero)) {
+        printf("Você só pode alugar 1 livro por gênero (%s)!\n", genero);
+        return;
+    }
+    // Verifica status atual do livro
+    int statusLocacao = VerificarLocacoes(idUsuarioLogado, idSelecionado);
+    if (statusLocacao == 1) {
+        printf("Você já alugou este livro!\n");
+    } else if (statusLocacao == 2) {
+        printf("Limite máximo de 3 locações atingido!\n");
+    } else {
+        // Tenta decrementar a quantidade
+        if (DecrementaQuantidadeLivro(idSelecionado)) {
+            RegistroLivrosLocadosPorUsuario(idSelecionado, idUsuarioLogado, genero);
+            printf("Livro alugado com sucesso!\n");
+        } else {
+            printf("Não foi possível alugar o livro (quantidade insuficiente)!\n");
+        }
     }
     EsperarInputUsuario();
 }
-
 //Funcionalidades do menu dos administradores
 void RegistrarLivro(){
     struct Livro livro;
@@ -171,5 +183,5 @@ void DoarLivros(){
 
 }
 
-}
+
 #endif
