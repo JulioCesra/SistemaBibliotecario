@@ -29,33 +29,19 @@
 	"Menus.h"
 	"FuncionalidadesArquivos.h"
 
-1750078055 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\main.c
+1750598870 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Menus.h"
 	<locale.h>
 
-1750078045 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"FuncionalidadesArquivos.h"
-	"FuncionalidadesMenu.h"
+1750601735 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.h
 
-1750079161 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
-	<stdio.h>
-	<stdlib.h>
-	"Estruturas.h"
-	<string.h>
+1750624835 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
 
-1749864740 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\estruturas.h
+1750599229 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\estruturas.h
 
-1750079295 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"Menus.h"
-	"FuncionalidadesArquivos.h"
+1750622933 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
 
 1750087083 source:c:\users\teste\downloads\sistemabibliotecario\main.c
 	<stdio.h>
@@ -84,4 +70,30 @@
 	<string.h>
 	"Menus.h"
 	"FuncionalidadesArquivos.h"
+
+1750625107 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+
+1750624864 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+
+1750623220 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
 

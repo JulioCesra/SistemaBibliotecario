@@ -32,8 +32,17 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Estruturas.h" />
+		<Unit filename="FuncionalidadesArquivos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="FuncionalidadesArquivos.h" />
+		<Unit filename="FuncionalidadesMenu.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="FuncionalidadesMenu.h" />
+		<Unit filename="Menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Menus.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />

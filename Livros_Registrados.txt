@@ -1,64 +1,8 @@
 
 ID do livro: 1
-Titulo: Laranja Mecƒnica
-Autor: Antony Burgess
-Gênero literário: Distopia
-Ano de lançamento: 1910
-Quantidade em estoque: 32
-
-ID do livro: 2
-Titulo: JulioLivro
-Autor: Julio
-Gênero literário: Drama
-Ano de lançamento: 1345
-Quantidade em estoque: 1000
-
-ID do livro: 3
-Titulo: HistoriaDoJulio
-Autor: Julio
-Gênero literário: Didatico
-Ano de lançamento: 200
-Quantidade em estoque: 2
-
-ID do livro: 4
-<<<<<<< HEAD
-Titulo: 1984
-Autor: George Owell
-Gênero literário: Futurista
-Ano de lançamento: 1920
-Quantidade em estoque: 100
-
-ID do livro: 5
-Titulo: Revolu‡Æo dos bichos
-Autor: George Owell
-Gênero literário: Drama
-Ano de lançamento: 1960
-Quantidade em estoque: 10
-
-ID do livro: 6
-Titulo: TesteAnoLancamento
-Autor: s
-Gênero literário: s
-Ano de lançamento: 2024
-Quantidade em estoque: 12
-
-ID do livro: 7
-Titulo: Calculo 2
-Autor: James Stewart
-Gênero literário: Didatico
-Ano de lançamento: 2008
-Quantidade em estoque: 10
-
-ID do livro: 8
-Titulo: Book
-Autor: Box
-Gênero literário: suspense
-Ano de lançamento: 1988
-Quantidade em estoque: 33
-=======
-Titulo: LoucurasDoJulio
-Autor: Julio
-Gênero literário: 18
-Ano de lançamento: 100
-Quantidade em estoque: 2
->>>>>>> 6547c5eca7fd7aac205965bef1b87c6dab79dec8
+Titulo: Julio
+Autor: julio
+Gênero literário: 2
+Ano de lançamento: 32
+Quantidade em estoque: 6
+Status: DISPONÍVEL
