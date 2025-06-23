@@ -155,7 +155,7 @@ void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char 
     fprintf(arquivo,"Gênero literário: %s\n",generoLiterario);
     fprintf(arquivo,"Ano de lançamento: %d\n",anoLancamento);
     fprintf(arquivo,"Quantidade em estoque: %d\n",quantidadeEmEstoque);
-    fprintf(arquivo,"Status: %s\n", statusLivro);//DISPONIVEL OR INDISPONIVEL
+    fprintf(arquivo,"Status: %s\n", statusLivro);
     fclose(arquivo);
 
 }
@@ -348,8 +348,8 @@ void RegistroLivrosLocadosPorUsuario(const int idLivro,const int idUsuarioLogado
         printf("Error ao abrir o arquivo!\n");
         return;
     }
-    fprintf(arquivo,"\nID do livro locado: %d\n",idLivro);
-    fprintf(arquivo,"ID do locatário: %d\n",idUsuarioLogado);
+    fprintf(arquivo,"\nID do locatario: %d\n",idUsuarioLogado);
+    fprintf(arquivo,"ID do livro locado: %d\n",idLivro);
     fprintf(arquivo,"Nome do livro locado: %s\n",nomeLivro);
 
     fflush(arquivo);
@@ -368,9 +368,9 @@ int VerificarLocacoes(int idLocatorio, int idLivro){
     int mesmoLivro = 0;
 
     while(fgets(linhaAtual,sizeof(linhaAtual),arquivo)){
-        if(sscanf(linhaAtual,"ID do livro locado: %d",&idlivroAtual) == 1){
+        if(sscanf(linhaAtual,"ID do locatario: %d",&idlocatorioAtual) == 1){
             if(fgets(linhaAtual,sizeof(linhaAtual),arquivo)){
-                if(sscanf(linhaAtual,"ID do locatário: %d",&idlocatorioAtual) == 1){
+                if(sscanf(linhaAtual,"ID do livro locado: %d",&idlivroAtual) == 1){
                     if(idlocatorioAtual == idLocatorio){
                         contadorLocacoes ++;
                         if(idlivroAtual == idLivro){
@@ -425,7 +425,7 @@ void SessaoListarLivrosAlugadosUsuarios(const int idLocatario){
         if(sscanf(linhaAtual, "ID do livro locado: %d", &campoIDLivro) == 1) {
             continue;
         }
-        if(sscanf(linhaAtual, "ID do locatário: %d", &campoID) == 1) {
+        if(sscanf(linhaAtual, "ID do locatario: %d", &campoID) == 1) {
             if(campoID == idLocatario) {
                 mostrarProximo = 1;
             } else {
@@ -501,52 +501,19 @@ int DecrementaQuantidadeLivro(int idLivro) {
     }
     return 0;
 }
-void LivrosDevolucao(int idLivro) {
-    struct Livro livros[100];
-    int totalLivros = 0;
-    FILE *fRegistrados = fopen("Livros_Registrados.txt", "r");
-    if (!fRegistrados) {
-        printf("Erro ao abrir Livros_Registrados.txt!\n");
-        EsperarInputUsuario();
-        return;
-    }
-    while (fscanf(fRegistrados, "%d|%59[^|]|%59[^|]|%14[^|]|%59[^|]|%d|%d\n",
-           &livros[totalLivros].ID,
-           livros[totalLivros].titulo,
-           livros[totalLivros].autor,
-           livros[totalLivros].statusLivro,
-           livros[totalLivros].generoLiterario,
-           &livros[totalLivros].anoLancamento,
-           &livros[totalLivros].quantidadeEmEstoque) == 7) {
-        if (livros[totalLivros].ID == idLivro) {
-            livros[totalLivros].quantidadeEmEstoque += 1;
-        }
-        totalLivros++;
-    }
-    fclose(fRegistrados);
+void VisualizarLivrosDevolvidos(){
+    FILE *arquivo = fopen("Livros_Devolvidos.txt", "r");
 
-    fRegistrados = fopen("Livros_Registrados.txt", "w");
-    if (!fRegistrados) {
-        printf("Erro ao abrir Livros_Registrados.txt para escrita!\n");
-        EsperarInputUsuario();
+    if(arquivo == NULL){
+        printf("Erro no arquivo!\n");
         return;
     }
 
-    for (int i = 0; i < totalLivros; ++i) {
-        struct Livro *liv = &livros[i];
-        fprintf(fRegistrados, "%d|%s|%s|%s|%s|%d|%d\n",
-                liv->ID,
-                liv->titulo,
-                liv->autor,
-                liv->statusLivro,
-                liv->generoLiterario,
-                liv->anoLancamento,
-                liv->quantidadeEmEstoque);
+    char linhas[256];
+    printf("\n====REGISTRO DOS LIVROS DEVOLVIDOS====\n");
+    while(fgets(linhas,sizeof(linhas),arquivo)){
+        printf("%s",linhas);
     }
-    fclose(fRegistrados);
-    printf("Livro devolvido com sucesso!\n");
     EsperarInputUsuario();
 }
-
-
 

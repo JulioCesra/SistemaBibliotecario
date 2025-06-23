@@ -15,6 +15,7 @@ struct Livro{
     char generoLiterario[60];
     int anoLancamento;
     int quantidadeEmEstoque;
+    char disponivel[20];
 };
 
 struct LivroAlugado{

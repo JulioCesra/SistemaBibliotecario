@@ -26,7 +26,6 @@ void MenuUsuarios(int idUsuarioLogado){
             AlugarLivro(idUsuarioLogado);
             break;
         case 2:
-            printf("Livros Alugados\n");
             SessaoListarLivrosAlugadosUsuarios(idUsuarioLogado);
             break;
         case 3:
@@ -53,7 +52,8 @@ void MenuAdministrador(){
         printf("4 - Visualizar usuários cadastrados\n");
         printf("5 - Visualizar livros alugados\n");
         printf("6 - Adicionar estoque\n");
-        printf("7 - Sair do menu do administrador\n");
+        printf("7 - Visualizar livros devolvidos\n");
+        printf("8 - Sair do menu do administrador\n");
         printf("Digite o número correspondente com à opção desejada: ");
         if(scanf("%d",&opcao) != 1){
             printf("Opção inválida. Digite apenas números!\n");
@@ -89,6 +89,10 @@ void MenuAdministrador(){
             AdicionarEstoque();
             break;
         case 7:
+            LimparTela();
+            VisualizarLivrosDevolvidos();
+            break;
+        case 8:
             LimparTela();
             funcionamentoMenu = 0;
             break;

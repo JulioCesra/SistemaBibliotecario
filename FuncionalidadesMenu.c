@@ -6,9 +6,10 @@
 #include <string.h>
 #include "Estruturas.h"
 
+//Funcionalidades do menu de login
 void EntradaSistema(){
     struct Usuario usuario;
-    printf("\n=====ENTRADA DO SISTEMA=====\n");
+    printf("\n=====LOGIN=====\n");
     printf("Digite o usuário: ");
     scanf(" %[^\n]",usuario.nome);
     printf("Digite a senha: ");
@@ -35,25 +36,54 @@ void EntradaSistema(){
 void CadastrarUsuario(){
     struct Usuario usuario;
     printf("\n=====CADASTRO DO USUÁRIO=====\n");
-    printf("Digite o nome do usuario: ");
-    scanf("%s",usuario.nome);
-    printf("Digite a senha: ");
-    scanf("%s",usuario.senha);
-    if(VerificarUsuarioExistente(usuario.nome) == 1){
-        printf("Usuário já existe!\n");
-    }else{
-        RegistrarUsuarioEmArquivo(usuario.nome,usuario.senha);
-        printf("Usuário cadastrado com sucesso!\n");
+    printf("Deseja prosseguir com o cadastro? (1)-Sim | (2)-Não: ");
+    int prosseguir = 0;
+    if(scanf("%d",&prosseguir) != 1){
+        printf("Entrada inválida. Digite somente valores númericos!\n");
         EsperarInputUsuario();
+        LimparBuffer();
+        return;
     }
+    LimparBuffer();
+    switch(prosseguir){
+    case 1:
+        do{
+            printf("Digite o nome do usuario: ");
+            scanf(" %[^\n]",usuario.nome);
+            if(strlen(usuario.nome) == 0 || strlen(usuario.nome) < 6){
+                printf("O nome do usuário não pode ser nulo ou ter menos que 6 caracteres!\n");
+            }
+        }while(strlen(usuario.nome) == 0 || strlen(usuario.nome) < 6);
+        do{
+            printf("Digite a senha: ");
+            scanf(" %[^\n]",usuario.senha);
+            if(strlen(usuario.senha) == 0 || strlen(usuario.senha) < 6){
+                printf("A senha não pode ser vázia ou ter menos que 6 digitos ou caracteres!\n");
+            }
+        }while(strlen(usuario.senha) == 0 || strlen(usuario.senha) < 6);
+
+        if(VerificarUsuarioExistente(usuario.nome) == 1){
+            printf("Usuário já existe!\n");
+        }else{
+            RegistrarUsuarioEmArquivo(usuario.nome,usuario.senha);
+            printf("Usuário cadastrado com sucesso!\n");
+        }
+        break;
+    case 2:
+        return;
+        break;
+    default:
+        printf("Número digitado não encontrado nas opções!\n");
+        break;
+    }
+    EsperarInputUsuario();
 }
 //Funcionalidades do menu do usuário
 void AlugarLivro(int idUsuarioLogado) {
     int idSelecionado = 0;
-    printf("\n===== LIVROS DISPONIVEIS PARA LOCACAO =====\n");
+    printf("\n=====LIVROS DISPONÍVEIS PARA LOCAÇÃO=====\n");
     VisualizarLivrosRegistrados();
     printf("\nDigite o ID do livro que deseja locar: ");
-
     if (scanf("%d", &idSelecionado) != 1) {
         printf("Entrada invalida!\n");
         LimparBuffer();
@@ -87,62 +117,65 @@ void AlugarLivro(int idUsuarioLogado) {
 
     EsperarInputUsuario();
 }
-void DevolverLivroID(int idUsuarioLogado) {
-    struct Livro livro;
-    printf("\n===== DEVOLUCAO DE LIVRO =====\n");
-    printf("Digite o ID do livro alugado: ");
-    if (scanf("%d", &livro.ID) != 1) {
-        printf("Entrada invalida. Digite corretamente o ID!\n");
-        LimparBuffer();
-        EsperarInputUsuario();
+void DevolverLivroID(int idUsuarioLogado){
+    printf("\n=====DEVOLVER LIVRO=====\n");
+    printf("Digite o id que deseja devolver: ");
+    int idSelecionado = 0;
+    scanf("%d", &idSelecionado);
+
+    FILE *arquivo = fopen("Livros_Alugados.txt", "r");
+    FILE *devolvidos = fopen("Livros_Devolvidos.txt", "a");
+    FILE *temp = fopen("Livros_Alugados_Temp.txt","w");
+
+    if (arquivo == NULL || devolvidos == NULL || temp == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
         return;
     }
-    struct LivroAlugado registros[100];
-    int totalRegistros = 0;
-    FILE *fUsuario = fopen("Livros_Usuario.txt", "r");
-    if (!fUsuario) {
-        printf("Erro ao abrir Livros_Usuario.txt!\n");
-        EsperarInputUsuario();
-        return;
-    }
-    struct LivroAlugado registro;
+
+    char linha1[256];
+    char linha2[256];
+    char linha3[256];
+    int campoIDUsuario = 0;
+    int campoIDLivro = 0;
     int encontrado = 0;
-    while (fscanf(fUsuario, "%d|%d|%59[^\n]",
-                  &registro.IDLocador,
-                  &registro.IDLivro,
-                  registro.nomeLocador) == 3) {
-        if (registro.IDLocador == idUsuarioLogado && registro.IDLivro == livro.ID) {
-            encontrado = 1;
-        } else {
-            registros[totalRegistros++] = registro;
+
+    while (fgets(linha1, sizeof(linha1), arquivo)) {
+        if (sscanf(linha1, "ID do locatario: %d", &campoIDUsuario) == 1) {
+            if (fgets(linha2, sizeof(linha2), arquivo) &&
+                sscanf(linha2, "ID do livro locado: %d", &campoIDLivro) == 1) {
+
+                fgets(linha3, sizeof(linha3), arquivo);
+
+                if (campoIDUsuario == idUsuarioLogado && campoIDLivro == idSelecionado) {
+                    fprintf(devolvidos, "\nID do locador: %d\n", campoIDUsuario);
+                    fprintf(devolvidos, "ID do livro devolvido: %d\n", campoIDLivro);
+                    fprintf(devolvidos, "Nome do livro devolvido: %s\n", LocalizarTitutoLivroPorID(idSelecionado));
+                    printf("Livro devolvido com sucesso!\n");
+                    AdicionarQuantidade(campoIDLivro);
+                    encontrado = 1;
+                } else {
+                    fputs(linha1, temp);
+                    fputs(linha2, temp);
+                    fputs(linha3, temp);
+                }
+            }
         }
     }
-    fclose(fUsuario);
+
+    fclose(arquivo);
+    fclose(devolvidos);
+    fclose(temp);
+
     if (!encontrado) {
-        printf("Você não tem este livro alugado!\n");
-        EsperarInputUsuario();
-        return;
+        printf("Livro não encontrado!\n");
+        remove("Livros_Alugados_Temp.txt");
+    } else {
+        remove("Livros_Alugados.txt");
+        rename("Livros_Alugados_Temp.txt", "Livros_Alugados.txt");
     }
-    // Reescreve o arquivo atual sem o registro do livro devolvido
-    fUsuario = fopen("Livros_Usuario.txt", "w");
-    if (!fUsuario) {
-        printf("Erro ao abrir Livros_Usuario.txt para escrita!\n");
-        EsperarInputUsuario();
-        return;
-    }
-    for (int i = 0; i < totalRegistros; ++i) {
-        fprintf(fUsuario, "%d|%d|%s\n",
-                registros[i].IDLocador,
-                registros[i].IDLivro,
-                registros[i].nomeLocador);
-    }
-    fclose(fUsuario);
-    // Devolve o livro para estoque
-    LivrosDevolucao(livro.ID);
+
+    EsperarInputUsuario();
 }
-
-
-
 //Funcionalidades do menu dos administradores
 void RegistrarLivro(){
     struct Livro livro;
@@ -197,16 +230,17 @@ void ConsultarLivroPorID(){
     EsperarInputUsuario();
 }
 void VisualizarUsuariosCadastrados(){
-    printf("\n=====Usuários cadastrados=====\n");
+    printf("\n=====USUÁRIOS CADASTRADOS=====\n");
     ListarUsuariosRegistrados();
     EsperarInputUsuario();
 }
 void VisualizarLivrosAlugados(){
-    printf("\n=====Livros alugados=====\n");
+    printf("\n=====LIVROS ALUGADOS=====\n");
     SessaoListarLivrosAlugadosAdministrador();
     EsperarInputUsuario();
 }
 void AdicionarEstoque(){
+    printf("\n=====ADICIONAR ESTOQUE=====\n");
     int idSelecionado;
     printf("Digite o ID do livro que deseja adicionar em estoque: ");
     if(scanf("%d",&idSelecionado) != 1){

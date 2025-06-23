@@ -10,3 +10,23 @@ Senha do usuário: 2
 ID do usuário: 3
 Nome do usuário: pedro
 Senha do usuário: pedro
+
+ID do usuário: 4
+Nome do usuário: Felipe
+Senha do usuário: 1212
+
+ID do usuário: 5
+Nome do usuário: Bruno
+Senha do usuário: 2
+
+ID do usuário: 6
+Nome do usuário: Nome
+Senha do usuário: s
+
+ID do usuário: 7
+Nome do usuário: Julio espaco
+Senha do usuário: senha espaco
+
+ID do usuário: 8
+Nome do usuário: @
+Senha do usuário: ###
