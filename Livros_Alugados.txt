@@ -1,0 +1,4 @@
+
+ID do livro locado: 1
+ID do locatário: 3
+Nome do livro locado: Julio

@@ -501,7 +501,52 @@ int DecrementaQuantidadeLivro(int idLivro) {
     }
     return 0;
 }
+void LivrosDevolucao(int idLivro) {
+    struct Livro livros[100];
+    int totalLivros = 0;
+    FILE *fRegistrados = fopen("Livros_Registrados.txt", "r");
+    if (!fRegistrados) {
+        printf("Erro ao abrir Livros_Registrados.txt!\n");
+        EsperarInputUsuario();
+        return;
+    }
+    while (fscanf(fRegistrados, "%d|%59[^|]|%59[^|]|%14[^|]|%59[^|]|%d|%d\n",
+           &livros[totalLivros].ID,
+           livros[totalLivros].titulo,
+           livros[totalLivros].autor,
+           livros[totalLivros].statusLivro,
+           livros[totalLivros].generoLiterario,
+           &livros[totalLivros].anoLancamento,
+           &livros[totalLivros].quantidadeEmEstoque) == 7) {
+        if (livros[totalLivros].ID == idLivro) {
+            livros[totalLivros].quantidadeEmEstoque += 1;
+        }
+        totalLivros++;
+    }
+    fclose(fRegistrados);
 
+    fRegistrados = fopen("Livros_Registrados.txt", "w");
+    if (!fRegistrados) {
+        printf("Erro ao abrir Livros_Registrados.txt para escrita!\n");
+        EsperarInputUsuario();
+        return;
+    }
+
+    for (int i = 0; i < totalLivros; ++i) {
+        struct Livro *liv = &livros[i];
+        fprintf(fRegistrados, "%d|%s|%s|%s|%s|%d|%d\n",
+                liv->ID,
+                liv->titulo,
+                liv->autor,
+                liv->statusLivro,
+                liv->generoLiterario,
+                liv->anoLancamento,
+                liv->quantidadeEmEstoque);
+    }
+    fclose(fRegistrados);
+    printf("Livro devolvido com sucesso!\n");
+    EsperarInputUsuario();
+}
 
 
 

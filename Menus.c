@@ -30,7 +30,7 @@ void MenuUsuarios(int idUsuarioLogado){
             SessaoListarLivrosAlugadosUsuarios(idUsuarioLogado);
             break;
         case 3:
-            Devolver(idUsuarioLogado);
+            DevolverLivroID(idUsuarioLogado);
             break;
         case 4:
             funcionamentoMenu = 0;

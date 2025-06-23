@@ -6,3 +6,7 @@ Senha do usuário: 20
 ID do usuário: 2
 Nome do usuário: Carlos
 Senha do usuário: 2
+
+ID do usuário: 3
+Nome do usuário: pedro
+Senha do usuário: pedro

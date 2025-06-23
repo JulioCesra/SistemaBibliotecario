@@ -49,27 +49,13 @@
 	"Menus.h"
 	<locale.h>
 
-1750087083 c:\users\teste\downloads\sistemabibliotecario\menus.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"FuncionalidadesArquivos.h"
-	"FuncionalidadesMenu.h"
+1750628963 c:\users\teste\downloads\sistemabibliotecario\menus.h
 
-1750087083 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesarquivos.h
-	<stdio.h>
-	<stdlib.h>
-	"Estruturas.h"
-	<string.h>
+1750628963 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesarquivos.h
 
-1750003573 c:\users\teste\downloads\sistemabibliotecario\estruturas.h
+1750431712 c:\users\teste\downloads\sistemabibliotecario\estruturas.h
 
-1750087083 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesmenu.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"Menus.h"
-	"FuncionalidadesArquivos.h"
+1750628963 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesmenu.h
 
 1750625107 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.c
 	"FuncionalidadesMenu.h"
@@ -90,6 +76,32 @@
 	"Estruturas.h"
 
 1750623220 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+
+1750638786 source:c:\users\teste\downloads\sistemabibliotecario\funcionalidadesarquivos.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+
+1750639150 source:c:\users\teste\downloads\sistemabibliotecario\funcionalidadesmenu.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+
+1750638832 source:c:\users\teste\downloads\sistemabibliotecario\menus.c
 	"FuncionalidadesMenu.h"
 	"FuncionalidadesArquivos.h"
 	<stdio.h>

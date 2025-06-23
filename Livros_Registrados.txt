@@ -4,5 +4,5 @@ Titulo: Julio
 Autor: julio
 Gênero literário: 2
 Ano de lançamento: 32
-Quantidade em estoque: 6
+Quantidade em estoque: 5
 Status: DISPONÍVEL
