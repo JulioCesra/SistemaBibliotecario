@@ -16,6 +16,8 @@ int ValidarIdLivro(const int idLivro);
 char* LocalizarTitutoLivroPorID(const int idLivro);
 int VerificarArquivoVazio(const char *nomeArquivo);
 int AdicionarQuantidade(int idLivro);
+void VisualizarLivrosDevolvidos();
+char* DataAtual();
 //Sessão Livros Alugados
 void RegistroLivrosLocadosPorUsuario(const int idLivro,const int idUsuarioLogado,const char *nomeLivro);
 int VerificarLocacoes(int idLocatorio, int idLivro);

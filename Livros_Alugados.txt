@@ -1,3 +1,0 @@
-ID do locatario: 5
-ID do livro locado: 1
-Nome do livro locado: O livro de byori

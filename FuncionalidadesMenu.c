@@ -10,7 +10,7 @@
 void EntradaSistema(){
     struct Usuario usuario;
     printf("\n=====LOGIN=====\n");
-    printf("Digite o usuário: ");
+    printf("Digite o usuario: ");
     scanf(" %[^\n]",usuario.nome);
     printf("Digite a senha: ");
     scanf(" %[^\n]",usuario.senha);
@@ -19,7 +19,7 @@ void EntradaSistema(){
         MenuAdministrador();
     }else if (VerificarUsuarioExistente(usuario.nome) == 0){
         LimparTela();
-        printf("Usuário não encontrado!\n");
+        printf("Usuario nao encontrado!\n");
         EsperarInputUsuario();
     }else{
         if(ValidarEntradaUsuario(usuario.nome,usuario.senha) == 1){
@@ -28,7 +28,7 @@ void EntradaSistema(){
             MenuUsuarios(idUsuario);
         }else{
             LimparTela();
-            printf("Usuário ou senha incorreto!\n");
+            printf("Usuario ou senha incorreto !\n");
             EsperarInputUsuario();
         }
     }
@@ -36,7 +36,7 @@ void EntradaSistema(){
 void CadastrarUsuario(){
     struct Usuario usuario;
     printf("\n=====CADASTRO DO USUÁRIO=====\n");
-    printf("Deseja prosseguir com o cadastro? (1)-Sim | (2)-Não: ");
+    printf("Deseja prosseguir com o cadastro? (1)-Sim | (2)-Nao: ");
     int prosseguir = 0;
     if(scanf("%d",&prosseguir) != 1){
         printf("Entrada inválida. Digite somente valores númericos!\n");
@@ -73,7 +73,7 @@ void CadastrarUsuario(){
         return;
         break;
     default:
-        printf("Número digitado não encontrado nas opções!\n");
+        printf("Numero digitado nao encontrado nas opcoes!\n");
         break;
     }
     EsperarInputUsuario();
@@ -81,7 +81,7 @@ void CadastrarUsuario(){
 //Funcionalidades do menu do usuário
 void AlugarLivro(int idUsuarioLogado) {
     int idSelecionado = 0;
-    printf("\n=====LIVROS DISPONÍVEIS PARA LOCAÇÃO=====\n");
+    printf("\n=====LIVROS DISPONIVEIS PARA LOCACAO=====\n");
     VisualizarLivrosRegistrados();
     printf("\nDigite o ID do livro que deseja locar: ");
     if (scanf("%d", &idSelecionado) != 1) {
@@ -95,24 +95,24 @@ void AlugarLivro(int idUsuarioLogado) {
     if (ValidarIdLivro(idSelecionado) == 1) {
         int statusLocacao = VerificarLocacoes(idUsuarioLogado, idSelecionado);
         if (statusLocacao == 1) {
-            printf("Você já alugou este livro!\n");
+            printf("Você ja alugou este livro!\n");
         } else if (statusLocacao == 2) {
-            printf("Limite máximo de 3 locações atingido!\n");
+            printf("Limite maximo de 3 locacoes atingido!\n");
         } else {
             int resultadoPesquisa = DecrementaQuantidadeLivro(idSelecionado);
             if (resultadoPesquisa == 1) {
                 RegistroLivrosLocadosPorUsuario(idSelecionado, idUsuarioLogado, LocalizarTitutoLivroPorID(idSelecionado));
                 printf("Livro Alugado!\n");
             } else if (resultadoPesquisa == 0) {
-                printf("Livro não encontrado!\n");
+                printf("Livro nao encontrado!\n");
             } else if (resultadoPesquisa == -1) {
-                printf("Livro sem estoque disponível!\n");
+                printf("Livro sem estoque disponivel!\n");
             } else {
                 printf("Erro ao abrir o arquivo de registro!\n");
             }
         }
     } else {
-        printf("Livro não encontrado!\n");
+        printf("Livro nao encontrado!\n");
     }
 
     EsperarInputUsuario();
@@ -121,7 +121,12 @@ void DevolverLivroID(int idUsuarioLogado){
     printf("\n=====DEVOLVER LIVRO=====\n");
     printf("Digite o id que deseja devolver: ");
     int idSelecionado = 0;
-    scanf("%d", &idSelecionado);
+    if(scanf("%d",&idSelecionado) != 1){
+        printf("Entrada invalida. Digite novamente!\n");
+        LimparBuffer();
+        EsperarInputUsuario();
+        return;
+    }
 
     FILE *arquivo = fopen("Livros_Alugados.txt", "r");
     FILE *devolvidos = fopen("Livros_Devolvidos.txt", "a");
@@ -150,6 +155,7 @@ void DevolverLivroID(int idUsuarioLogado){
                     fprintf(devolvidos, "\nID do locador: %d\n", campoIDUsuario);
                     fprintf(devolvidos, "ID do livro devolvido: %d\n", campoIDLivro);
                     fprintf(devolvidos, "Nome do livro devolvido: %s\n", LocalizarTitutoLivroPorID(idSelecionado));
+                    fprintf(devolvidos, "Data e horario da devolucao: %s\n",DataAtual());
                     printf("Livro devolvido com sucesso!\n");
                     AdicionarQuantidade(campoIDLivro);
                     encontrado = 1;
@@ -167,7 +173,7 @@ void DevolverLivroID(int idUsuarioLogado){
     fclose(temp);
 
     if (!encontrado) {
-        printf("Livro não encontrado!\n");
+        printf("Livro nao encontrado!\n");
         remove("Livros_Alugados_Temp.txt");
     } else {
         remove("Livros_Alugados.txt");
@@ -184,7 +190,7 @@ void RegistrarLivro(){
     scanf(" %[^\n]",livro.titulo);
     printf("Digite o nome do autor: ");
     scanf(" %[^\n]",livro.autor);
-    printf("Digite o gênero literário: ");
+    printf("Digite o genero literario: ");
     scanf(" %[^\n]",livro.generoLiterario);
     do{
         printf("Digite o ano de lançamento: ");
@@ -210,7 +216,7 @@ void RegistrarLivro(){
         }
 
         if(livro.quantidadeEmEstoque <= 0){
-            printf("A quantidade não pode ser menor ou igual a zero!\n");
+            printf("A quantidade nao pode ser menor ou igual a zero!\n");
         }
     }while(livro.quantidadeEmEstoque <= 0);
     strcpy(livro.statusLivro,"DISPONÍVEL");
@@ -222,7 +228,7 @@ void ConsultarLivroPorID(){
     printf("\n=====BUSCA POR ID=====\n");
     printf("Digite o id do livro para buscar: ");
     if(scanf("%d",&livro.ID) != 1){
-        printf("Entrada inválida. Digite corretamente o ID!\n");
+        printf("Entrada invalida. Digite corretamente o ID!\n");
         LimparBuffer();
     }else{
         BuscarLivroPorID(livro.ID);
@@ -230,7 +236,7 @@ void ConsultarLivroPorID(){
     EsperarInputUsuario();
 }
 void VisualizarUsuariosCadastrados(){
-    printf("\n=====USUÁRIOS CADASTRADOS=====\n");
+    printf("\n=====USUARIOS CADASTRADOS=====\n");
     ListarUsuariosRegistrados();
     EsperarInputUsuario();
 }
@@ -244,7 +250,7 @@ void AdicionarEstoque(){
     int idSelecionado;
     printf("Digite o ID do livro que deseja adicionar em estoque: ");
     if(scanf("%d",&idSelecionado) != 1){
-        printf("Entrada inválida. Digite um valor númerico!\n");
+        printf("Entrada invalida. Digite um valor numerico!\n");
         LimparBuffer();
         EsperarInputUsuario();
         return;
@@ -253,7 +259,7 @@ void AdicionarEstoque(){
             AdicionarQuantidade(idSelecionado);
             printf("Unidade adicionada com sucesso!\n");
         }else{
-            printf("Livro não encontrado!\n");
+            printf("Livro nao encontrado!\n");
         }
     }
     EsperarInputUsuario();

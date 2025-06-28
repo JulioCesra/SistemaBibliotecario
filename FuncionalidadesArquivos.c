@@ -5,8 +5,40 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Estruturas.h"
+#include <time.h>
 
-//Sessão Usuários
+
+//Funcionalidades gerais
+char* DataAtual(){
+    time_t tempo_atual;
+    struct tm *info_tempo;
+    char *data = malloc(80);
+
+    if(data == NULL){
+        return NULL;
+    }
+
+    time(&tempo_atual);
+    info_tempo = localtime(&tempo_atual);
+
+    strftime(data,80,"%d/%m/%Y %H:%M:%S",info_tempo);
+    return data;
+}
+int VerificarArquivoVazio(const char* nomeArquivo){
+    FILE *arquivo = fopen(nomeArquivo,"r");
+    if(arquivo == NULL){
+        printf("Error ao abrir o arquivo!\n");
+        return 1;
+    }
+    fseek(arquivo, 0, SEEK_END);
+    long tamanho = ftell(arquivo);
+    fclose(arquivo);
+
+    return (tamanho == 0);
+
+}
+
+//Funcionalidades relacionadas ao usuário
 int ValidarEntradaUsuario(const char *nomeUsuario, const char *senhaUsuario){
     FILE *arquivo;
     arquivo = fopen("Usuarios_Cadastrados.txt","r");
@@ -92,6 +124,7 @@ void RegistrarUsuarioEmArquivo(const char *nomeUsuario, const char *senhaUsuario
     fprintf(arquivo,"\nID do usuário: %d\n",usuario.ID);
     fprintf(arquivo,"Nome do usuário: %s\n",nomeUsuario);
     fprintf(arquivo,"Senha do usuário: %s\n",senhaUsuario);
+    fprintf(arquivo,"Data e horario do registro: %s\n",DataAtual());
     fclose(arquivo);
 }
 void ListarUsuariosRegistrados(){
@@ -140,7 +173,7 @@ int IdUsuarioAtual(const char *nomeUsuario){
 
 }
 
-//Sessão Livros
+//Funcionalidades relacionadas ao livro
 void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char *generoLiterario, const int anoLancamento, const int quantidadeEmEstoque, const char *statusLivro){
     FILE *arquivo = fopen("Livros_Registrados.txt","a");
     if(arquivo == NULL){
@@ -156,6 +189,7 @@ void RegistrarLivrosEmArquivo(const char *titulo, const char *autor, const char 
     fprintf(arquivo,"Ano de lançamento: %d\n",anoLancamento);
     fprintf(arquivo,"Quantidade em estoque: %d\n",quantidadeEmEstoque);
     fprintf(arquivo,"Status: %s\n", statusLivro);
+    fprintf(arquivo,"Data e horrio do registro: %s\n",DataAtual());
     fclose(arquivo);
 
 }
@@ -267,19 +301,6 @@ char* LocalizarTitutoLivroPorID(const int idLivro){
     fclose(arquivo);
     return NULL;
 }
-int VerificarArquivoVazio(const char* nomeArquivo){
-    FILE *arquivo = fopen(nomeArquivo,"r");
-    if(arquivo == NULL){
-        printf("Error ao abrir o arquivo!\n");
-        return 1;
-    }
-    fseek(arquivo, 0, SEEK_END);
-    long tamanho = ftell(arquivo);
-    fclose(arquivo);
-
-    return (tamanho == 0);
-
-}
 int AdicionarQuantidade(int idLivro) {
     FILE *temp = fopen("Livros_Registrados_Temporario.txt", "w");
     FILE *arquivo = fopen("Livros_Registrados.txt", "r");
@@ -340,8 +361,6 @@ int AdicionarQuantidade(int idLivro) {
         return encontrado;
     }
 }
-
-//Sessão Livros Alugados
 void RegistroLivrosLocadosPorUsuario(const int idLivro,const int idUsuarioLogado,const char *nomeLivro){
     FILE *arquivo = fopen("Livros_Alugados.txt","a");
     if(arquivo == NULL){
@@ -351,6 +370,7 @@ void RegistroLivrosLocadosPorUsuario(const int idLivro,const int idUsuarioLogado
     fprintf(arquivo,"\nID do locatario: %d\n",idUsuarioLogado);
     fprintf(arquivo,"ID do livro locado: %d\n",idLivro);
     fprintf(arquivo,"Nome do livro locado: %s\n",nomeLivro);
+    fprintf(arquivo,"Data e horario locado: %s\n",DataAtual());
 
     fflush(arquivo);
     fclose(arquivo);
@@ -502,18 +522,21 @@ int DecrementaQuantidadeLivro(int idLivro) {
     return 0;
 }
 void VisualizarLivrosDevolvidos(){
-    FILE *arquivo = fopen("Livros_Devolvidos.txt", "r");
+    if(VerificarArquivoVazio("Livros_Devolvidos.txt")){
+        printf("Nenhum livro devolvido!\n");
+    }else{
+        FILE *arquivo = fopen("Livros_Devolvidos.txt", "r");
 
-    if(arquivo == NULL){
-        printf("Erro no arquivo!\n");
-        return;
-    }
+        if(arquivo == NULL){
+            printf("Erro no arquivo!\n");
+            return;
+        }
 
-    char linhas[256];
-    printf("\n====REGISTRO DOS LIVROS DEVOLVIDOS====\n");
-    while(fgets(linhas,sizeof(linhas),arquivo)){
-        printf("%s",linhas);
+        char linhas[256];
+        printf("\n====REGISTRO DOS LIVROS DEVOLVIDOS====\n");
+        while(fgets(linhas,sizeof(linhas),arquivo)){
+            printf("%s",linhas);
+        }
     }
     EsperarInputUsuario();
 }
-

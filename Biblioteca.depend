@@ -37,11 +37,11 @@
 
 1750601735 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.h
 
-1750624835 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
+1751115657 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.h
 
-1750599229 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\estruturas.h
+1751114727 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\estruturas.h
 
-1750622933 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
+1751115351 c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.h
 
 1750679665 source:c:\users\teste\downloads\sistemabibliotecario\main.c
 	<stdio.h>
@@ -57,7 +57,17 @@
 
 1750628963 c:\users\teste\downloads\sistemabibliotecario\funcionalidadesmenu.h
 
-1750625107 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.c
+1751119133 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesarquivos.c
+	"FuncionalidadesMenu.h"
+	"FuncionalidadesArquivos.h"
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estruturas.h"
+	<time.h>
+
+1751119855 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.c
 	"FuncionalidadesMenu.h"
 	"FuncionalidadesArquivos.h"
 	"Menus.h"
@@ -66,22 +76,14 @@
 	<string.h>
 	"Estruturas.h"
 
-1750624864 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\funcionalidadesmenu.c
-	"FuncionalidadesMenu.h"
-	"FuncionalidadesArquivos.h"
-	"Menus.h"
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"Estruturas.h"
-
-1750623220 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.c
+1751119971 source:c:\users\julio\onedrive\documentos\github\sistemabibliotecario\menus.c
 	"FuncionalidadesMenu.h"
 	"FuncionalidadesArquivos.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Estruturas.h"
+	<locale.h>
 
 1750706237 source:c:\users\teste\downloads\sistemabibliotecario\funcionalidadesarquivos.c
 	"FuncionalidadesMenu.h"

@@ -6,6 +6,7 @@ void CadastrarUsuario();
 //Funcionalidades do menu do usuário
 void AlugarLivro(int idUsuarioLogado);
 void Devolver(int idUsuarioLogado);
+void DevolverLivroID(int idUsuarioLogado);
 //Funcionalidades do menu dos administradores
 void RegistrarLivro();
 void ConsultarLivroPorID();

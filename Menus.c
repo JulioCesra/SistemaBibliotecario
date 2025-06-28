@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Estruturas.h"
+#include <locale.h>
+
 int opcao = 0;
 void MenuUsuarios(int idUsuarioLogado){
     int funcionamentoMenu = 1;
@@ -23,15 +25,19 @@ void MenuUsuarios(int idUsuarioLogado){
         }
         switch(opcao){
         case 1:
+            LimparTela();
             AlugarLivro(idUsuarioLogado);
             break;
         case 2:
+            LimparTela();
             SessaoListarLivrosAlugadosUsuarios(idUsuarioLogado);
             break;
         case 3:
+            LimparTela();
             DevolverLivroID(idUsuarioLogado);
             break;
         case 4:
+            LimparTela();
             funcionamentoMenu = 0;
             break;
         default:
